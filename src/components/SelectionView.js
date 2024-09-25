@@ -19,17 +19,14 @@ const SelectionView = () => {
 		numDocs: "",
 	});
 
-	console.log("BACKEND_URL: ", process.env.BACKEND_URL);
-
 	const { data, isLoading, isError, reload } = useFetchData(
 		formData,
 		shouldFetch
 	);
 
-	// handleSubmit is provided by react-hook-form
 	const onSubmit = (data) => {
-		setFormData(data); // Update formData with the submitted values
-		setShouldFetch(true); // Trigger data fetching
+		setFormData(data);
+		setShouldFetch(true);
 	};
 
 	return (
@@ -129,7 +126,7 @@ const SelectionView = () => {
 						<Skeleton count={5} />
 					</div>
 				</div>
-			) : data?.docs?.length || data?.gptAnswer ? (
+			) : data?.docs?.length || data?.answer ? (
 				<div className="response-section">
 					<div className="doc-response">
 						<h3>
@@ -138,15 +135,13 @@ const SelectionView = () => {
 						{data.docs.length === 0 ? (
 							<p>No documents found for the selected folder.</p>
 						) : (
-							data.docs.map((doc) => (
+							data?.docs?.map((doc) => (
 								<div className="doc" key={doc.id}>
-									<h2>{doc.snippet}</h2>
+									<p>{doc?.content}</p>
 									<div className="doc-info">
-										{doc.filePath && <h4>File path: {doc.filePath}</h4>}
-										{doc.batesNumber && (
-											<h4>Bates number: {doc.batesNumber}</h4>
-										)}
-										{doc.pageNumber && <h4>Page number: {doc.pageNumber}</h4>}
+										{doc?.file_path && <p>File path: {doc.file_path}</p>}
+										{doc?.bates_num && <p>Bates number: {doc.bates_num}</p>}
+										{doc?.page_num && <p>Page number: {doc.page_num}</p>}
 									</div>
 								</div>
 							))
@@ -156,7 +151,7 @@ const SelectionView = () => {
 						<h3>
 							<u>GPT Answer:</u>
 						</h3>
-						<p>{data.gptAnswer}</p>
+						<p>{data?.answer}</p>
 					</div>
 				</div>
 			) : null}
