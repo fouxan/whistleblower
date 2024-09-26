@@ -5,9 +5,7 @@
 .input-section {
 	display: flex;
 	flex-direction: row;
-	align-items: space-evenly;
 	justify-content: center;
-	/* width: 60%; */
 }
 
 .input-field {
@@ -23,29 +21,33 @@
 .submit-section {
 	display: flex;
 	flex-direction: row;
-	align-items: center;
 	justify-content: center;
 }
 
-.submit-section button {
+.submit-section button,
+.retry-button {
 	margin-top: 10px;
 	padding: 10px;
 	font-size: 16px;
-	background-color: #4caf50;
-	color: white;
 	border: 3px solid black;
 	cursor: pointer;
 	border-radius: 8px;
-	-webkit-border-radius: 8px;
-	-moz-border-radius: 8px;
-	-ms-border-radius: 8px;
-	-o-border-radius: 8px;
+	color: white;
+}
+
+.submit-section button {
+	background-color: #4caf50;
+}
+
+.retry-button {
+	background-color: red;
+	padding: 12px;
+	border: none;
 }
 
 .response-section {
 	display: flex;
 	flex-direction: row;
-	align-items: flex-start;
 	justify-content: space-evenly;
 	padding: 20px;
 	text-align: center;
@@ -55,14 +57,13 @@
 	color: gray;
 }
 
-.answer-response {
+.answer-response,
+.doc-response {
 	min-width: 50%;
 	max-width: 50%;
 }
 
 .doc-response {
-	min-width: 50%;
-	max-width: 50%;
 	gap: 20px;
 }
 
@@ -70,17 +71,12 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
 	padding: 10px;
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	font-size: 14px;
 	margin: 10px;
 	min-width: 30%;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	-ms-border-radius: 4px;
-	-o-border-radius: 4px;
 }
 
 .doc {
@@ -95,21 +91,8 @@
 	font-size: 14px;
 }
 
-.custom-input {
-	width: 100%;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	font-size: 16px;
-	box-sizing: border-box;
-}
-
-.custom-input:focus {
-	border-color: #4caf50;
-	outline: none;
-	box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
-}
-
+/* Common Input and Select Styles */
+.custom-input,
 .custom-select {
 	width: 100%;
 	padding: 10px;
@@ -117,33 +100,151 @@
 	border-radius: 4px;
 	font-size: 16px;
 	box-sizing: border-box;
+	margin-bottom: 10px;
 }
 
+.custom-input:focus,
 .custom-select:focus {
 	border-color: #4caf50;
 	outline: none;
+	box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
 }
 
 .error-message {
-	margin: 40px;
 	color: red;
 	font-size: 16px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	/* justify-content: flex-end; */
+	margin-top: 40px;
 }
 
-.retry-button {
-	background-color: red;
-	color: white;
-	font-size: 16px;
-	border: none;
+.auth-header {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.auth-header h1 {
+	font-size: 28px;
+	color: #333;
+}
+
+.auth-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: 100vh;
+	padding: 20px;
+}
+
+.auth-form {
+	width: 100%;
+	max-width: 400px;
+	padding: 20px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	background-color: #fff;
+	text-align: center;
+}
+
+.submit-button {
+	width: 20%;
 	padding: 12px;
+	font-size: 16px;
+	background-color: #4caf50;
+	color: white;
+	border: none;
 	cursor: pointer;
 	border-radius: 8px;
-	-webkit-border-radius: 8px;
-	-moz-border-radius: 8px;
-	-ms-border-radius: 8px;
-	-o-border-radius: 8px;
+	transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+	background-color: #45a049;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+	.auth-container,
+	.auth-form {
+		padding: 10px;
+	}
+
+	.auth-form {
+		max-width: 90%;
+	}
+
+	.custom-input,
+	.submit-button,
+	.custom-select {
+		font-size: 14px;
+		padding: 8px;
+	}
+
+	.input-section {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.response-section {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.doc-response,
+	.answer-response {
+		max-width: 100%;
+	}
+
+	.submit-section button {
+		font-size: 14px;
+	}
+}
+
+@media (max-width: 480px) {
+	.auth-form {
+		padding: 15px;
+		box-shadow: none;
+		border: 1px solid #ddd;
+	}
+
+	.custom-input,
+	.submit-button,
+	.custom-select {
+		font-size: 13px;
+		padding: 7px;
+	}
+
+	.submit-button {
+		padding: 10px;
+	}
+
+	.input-section {
+		padding: 10px;
+	}
+
+	.input-field {
+		width: 100%;
+		padding: 5px;
+	}
+
+	.submit-section button {
+		width: 100%;
+		padding: 8px;
+	}
+
+	.response-section {
+		padding: 10px;
+	}
+
+	.doc {
+		flex-direction: column;
+	}
+
+	.doc-info {
+		width: 100%;
+		margin: 5px;
+		padding: 10px;
+	}
 }

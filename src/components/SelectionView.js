@@ -104,6 +104,12 @@ const SelectionView = () => {
 				</div>
 			) : isLoading ? (
 				<div className="response-section">
+					<div className="answer-response">
+						<h3>
+							<u>GPT Answer:</u>
+						</h3>
+						<Skeleton count={5} />
+					</div>
 					<div className="doc-response">
 						<h3>
 							<u>Retrieving docs...</u>
@@ -119,15 +125,15 @@ const SelectionView = () => {
 							</div>
 						))}
 					</div>
+				</div>
+			) : data?.docs?.length || data?.answer ? (
+				<div className="response-section">
 					<div className="answer-response">
 						<h3>
 							<u>GPT Answer:</u>
 						</h3>
-						<Skeleton count={5} />
+						<p>{data?.answer}</p>
 					</div>
-				</div>
-			) : data?.docs?.length || data?.answer ? (
-				<div className="response-section">
 					<div className="doc-response">
 						<h3>
 							<u>Docs retrieved:</u>
@@ -146,12 +152,6 @@ const SelectionView = () => {
 								</div>
 							))
 						)}
-					</div>
-					<div className="answer-response">
-						<h3>
-							<u>GPT Answer:</u>
-						</h3>
-						<p>{data?.answer}</p>
 					</div>
 				</div>
 			) : null}

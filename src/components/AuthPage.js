@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import "../App.css"; // Import the CSS file
 
 const AuthPage = () => {
 	const {
@@ -24,27 +25,23 @@ const AuthPage = () => {
 	};
 
 	return (
-		<div
-			style={{
-				display: "flex",
-				justifyContent: "center",
-				alignItems: "center",
-				height: "100vh",
-			}}
-		>
-			<form onSubmit={handleSubmit(onSubmit)} style={{ textAlign: "center" }}>
+		<div className="auth-container">
+			<div className="auth-header">
+				<h1>Welcome to Whistleblower Prototype</h1>
+			</div>
+			<form onSubmit={handleSubmit(onSubmit)} className="auth-form">
 				<h2>Login</h2>
-				{error && <p style={{ color: "red" }}>{error}</p>}
+				{error && <p className="error-message">{error}</p>}
 
 				<div>
 					<input
 						type="text"
 						placeholder="Username"
 						{...register("username", { required: "Username is required" })}
-						style={{ padding: "8px", marginBottom: "10px", width: "200px" }}
+						className="custom-input"
 					/>
 					{errors.username && (
-						<p style={{ color: "red" }}>{errors.username.message}</p>
+						<p className="error-message">{errors.username.message}</p>
 					)}
 				</div>
 
@@ -53,14 +50,14 @@ const AuthPage = () => {
 						type="password"
 						placeholder="Password"
 						{...register("password", { required: "Password is required" })}
-						style={{ padding: "8px", marginBottom: "10px", width: "200px" }}
+						className="custom-input"
 					/>
 					{errors.password && (
-						<p style={{ color: "red" }}>{errors.password.message}</p>
+						<p className="error-message">{errors.password.message}</p>
 					)}
 				</div>
 
-				<button type="submit" style={{ padding: "8px 20px" }}>
+				<button type="submit" className="submit-button">
 					Login
 				</button>
 			</form>
